@@ -1,2 +1,1 @@
-streamlit
-snowflake-snowpark-python_as: OWNER
+streamlit[snowflake]
