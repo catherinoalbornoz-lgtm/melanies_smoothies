@@ -27,7 +27,7 @@ my_dataframe = session.table(
 #st.stop()
 
 #Convert to snowpark dataframe to a pandas Dataframe so wecan use the LOC function
-pd_df=my_daframe.to_pandas()
+pd_df=my_dataframe.to_pandas()
 st.dataframe(pd_df)
 st.stop()
 
