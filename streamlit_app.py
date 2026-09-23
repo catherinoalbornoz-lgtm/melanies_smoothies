@@ -15,7 +15,15 @@ session = conn.session()
 # Obtener frutas desde Snowflake
 my_dataframe = session.table(
     "SMOOTHIES.PUBLIC.FRUIT_OPTIONS"
-).select(col("FRUIT_NAME"))
+).select(
+    col("FRUIT_NAME"),
+    col("SEARCH_ON")
+)
+
+# 👇 ESTO ES LO QUE TE PIDE AGREGAR EL CURSO
+st.dataframe(data=my_dataframe, use_container_width=True)
+st.stop()
+
 
 fruit_rows = my_dataframe.collect()
 
@@ -35,10 +43,14 @@ if ingredients_list:
 
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
-        st.subheader(fruit_chosen + 'Nutrition Information')
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + fruit_chosen)
-        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
+        st.subheader(fruit_chosen + ' Nutrition Information')
 
+        smoothiefroot_response = requests.get(
+            "https://my.smoothiefroot.com/api/fruit/" + fruit_chosen
+        )
 
-
+        sf_df = st.dataframe(
+            data=smoothiefroot_response.json(),
+            use_container_width=True
+        )
