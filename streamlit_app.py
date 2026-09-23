@@ -20,9 +20,9 @@ my_dataframe = session.table(
     col("SEARCH_ON")
 )
 
-# 👇 ESTO ES LO QUE TE PIDE AGREGAR EL CURSO
-st.dataframe(data=my_dataframe, use_container_width=True)
-st.stop()
+
+#st.dataframe(data=my_dataframe, use_container_width=True)
+#st.stop()
 
 
 fruit_rows = my_dataframe.collect()
